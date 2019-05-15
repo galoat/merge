@@ -1,7 +1,8 @@
 fun main(args: Array<String>) {
     println("Hello World!")
     val intArray= intArrayOf(38, 27 , 43,3, 9, 82, 10)
-    mergeSort(intArray)
+   var result = mergeSort(intArray)
+    println("result " +result.toList().toString())
 }
 
 fun mergeSort(array: IntArray): IntArray{
@@ -12,21 +13,21 @@ fun mergeSort(array: IntArray): IntArray{
         //divid the array by two
         var left : IntArray
         var right: IntArray? = null
-        val pair: Boolean;
+
         if(array.size  % 2 == 0){
             left= array.copyOfRange(0, (array.size /2))
             right = array.copyOfRange(((array.size/2) ), array.size)
 
-           pair= true
         }
         else{
             left= array.copyOfRange(0, (array.size /2)+1)
             right = array.copyOfRange(((array.size/2)+1), array.size)
-            pair = false
+
         }
+
         var  arrayLeft = mergeSort(left)
         var arrayRight: IntArray
-        if(pair == true) {
+        if(right.size > 1) {
             arrayRight = mergeSort(right)
         }else {
             arrayRight = right;
@@ -58,7 +59,7 @@ fun mergeTwoArray(leftArray : IntArray, rightArray : IntArray): IntArray{
                 indexLeft++
                 currentIndex++
             }
-            println("the element result array  " + resultArray.toList().toString())
+
             return resultArray
         }
         if(indexLeft == leftArray.size){
@@ -68,7 +69,7 @@ fun mergeTwoArray(leftArray : IntArray, rightArray : IntArray): IntArray{
                 indexRight++
                 currentIndex++
             }
-            println("the element result array  " + resultArray.toList().toString())
+
             return resultArray
         }
     }
