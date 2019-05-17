@@ -2,13 +2,14 @@ package mergesort
 
 
 
-fun mergeSort(array: IntArray): IntArray{
+fun mergeSort(array: IntArray, step: Int = 1): IntArray{
+    println(" step : "+ step + " Array "+ array.toList())
     if(array.size === 1){
         return array
     }
     else{
         var left : IntArray
-        var right: IntArray? = null
+        var right: IntArray
 
         if(array.size  % 2 == 0){
             left= array.copyOfRange(0, (array.size /2))
@@ -18,13 +19,12 @@ fun mergeSort(array: IntArray): IntArray{
         else{
             left= array.copyOfRange(0, (array.size /2)+1)
             right = array.copyOfRange(((array.size/2)+1), array.size)
-
         }
 
-        var  arrayLeft = mergeSort(left)
+        var  arrayLeft = mergeSort(left, step+1)
         var arrayRight: IntArray
         if(right.size > 1) {
-            arrayRight = mergeSort(right)
+            arrayRight = mergeSort(right, step + 1)
         }else {
             arrayRight = right;
         }
@@ -35,7 +35,7 @@ fun mergeSort(array: IntArray): IntArray{
 
 fun mergeTwoArray(leftArray : IntArray, rightArray : IntArray): IntArray{
     println("comparre array " + leftArray.toList() + " and " + rightArray.toList())
-    var resultArray:IntArray = IntArray(rightArray.size + leftArray.size)
+    var resultArray = IntArray(rightArray.size + leftArray.size)
     var indexRight = 0
     var indexLeft = 0
     for(i in 0 .. (rightArray.size + leftArray.size - 1)){
@@ -60,6 +60,7 @@ fun mergeTwoArray(leftArray : IntArray, rightArray : IntArray): IntArray{
 private fun copyFullArray( resultArray: IntArray,  indexCurrentResultArray:  Int,  arrayToCopy: IntArray,  arrayToCopyIndex:  Int) : IntArray{
     var indexCopy = arrayToCopyIndex
     var indexCurrentResult = indexCurrentResultArray
+
     while(indexCopy < arrayToCopy.size){
         resultArray.set(indexCurrentResultArray, arrayToCopy.get(arrayToCopyIndex))
         indexCopy++
