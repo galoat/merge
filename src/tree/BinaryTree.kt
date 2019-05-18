@@ -35,10 +35,6 @@ fun display(root: BinaryTree<T>): String{
     override fun toString(): String {
         return StringBuffer().apply {
             append("value $value")
-            if (left != null)
-                append(", ${left.toString()}")
-            if (right != null)
-                append(", ${right.toString()}}")
         }.toString()
     }
 
