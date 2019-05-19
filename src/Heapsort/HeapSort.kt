@@ -1,17 +1,45 @@
 import tree.BinaryTree
 import tree.TreeNode
 
-fun createTree( array: IntArray): BinaryTree<Int>? {
+fun createTree( array: IntArray): IntArray? {
     println("Entry Array ${array.toList()}")
 
 
    var root = addNode(null, array,0 )
-    var change = true
-    do{
-      change =  tamiser(root!!)
-    }while (change)
+    var result: IntArray = IntArray(array.size )
+    for(i in (0 until array.size)) {
+        var change: Boolean
+        do {
+            change = tamiser(root!!)
+        } while (change)
+        result[array.size -1 - i ] = root.value
+        root.value = addResultTab(result, root)
+        println("Result iteration $i and ${result.toList()}")
+    }
+    return result
 
-    return root
+}
+
+fun addResultTab(array : IntArray, root: BinaryTree<Int> ): Int{
+    if(root.right != null){
+        return addResultTab(array, root.right!!)
+    }else if(root.left != null){
+        return addResultTab(array, root.left!!)
+    }
+    else {
+        if(root.parent!!.right  != null){
+            root.parent!!.right = null
+
+        }
+        else if(root.parent!!.left == null){
+            root.parent!!.left = null
+        }
+        else{
+            // we are the root noode
+            return root.value
+        }
+        return root.value
+    }
 
 }
 
