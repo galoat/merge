@@ -1,3 +1,4 @@
+import Heapsort.HeapSortArray
 import QuickSort.quickSort
 import mergesort.mergeSort
 
@@ -9,8 +10,8 @@ fun main(args: Array<String>) {
    */
 
     val intArray = intArrayOf(3, 7, 8, 5, 2, 1, 9, 5, 4)
-    val result : IntArray? = createTree(intArray)
-    println("result " + (result?.toList()))
+    HeapSortArray(intArray)
+    //println("result " + (result?.toList()))
 }
 
 fun test(i:Int){
